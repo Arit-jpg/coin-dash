@@ -1,0 +1,50 @@
+[gd_scene load_steps=4 format=3 uid="uid://b7e3f26onn3vk"]
+
+[ext_resource type="FontFile" uid="uid://cnltpkov8qbtn" path="res://Coin Dash Assets/Kenney Bold.ttf" id="1_h61sl"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_mi5n8"]
+font = ExtResource("1_h61sl")
+font_size = 48
+outline_size = 13
+outline_color = Color(0.827451, 0, 0.341176, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_yu8mg"]
+font = ExtResource("1_h61sl")
+font_size = 33
+
+[node name="HUD" type="CanvasLayer"]
+
+[node name="Message" type="Label" parent="."]
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_top = -11.5
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "COIN DASH"
+label_settings = SubResource("LabelSettings_mi5n8")
+horizontal_alignment = 1
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+anchors_preset = 10
+anchor_right = 1.0
+grow_horizontal = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="Time" type="Label" parent="MarginContainer"]
+layout_mode = 2
+text = "0
+"
+label_settings = SubResource("LabelSettings_yu8mg")
+
+[node name="Score" type="Label" parent="MarginContainer"]
+layout_mode = 2
+text = "0
+"
+label_settings = SubResource("LabelSettings_yu8mg")
+horizontal_alignment = 2
