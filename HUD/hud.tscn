@@ -1,6 +1,7 @@
-[gd_scene load_steps=4 format=3 uid="uid://b7e3f26onn3vk"]
+[gd_scene load_steps=5 format=3 uid="uid://b7e3f26onn3vk"]
 
 [ext_resource type="FontFile" uid="uid://cnltpkov8qbtn" path="res://Coin Dash Assets/Kenney Bold.ttf" id="1_h61sl"]
+[ext_resource type="Script" uid="uid://dgrmo3h0vgbs7" path="res://HUD/hud.gd" id="1_mi5n8"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_mi5n8"]
 font = ExtResource("1_h61sl")
@@ -13,6 +14,7 @@ font = ExtResource("1_h61sl")
 font_size = 33
 
 [node name="HUD" type="CanvasLayer"]
+script = ExtResource("1_mi5n8")
 
 [node name="Message" type="Label" parent="."]
 anchors_preset = 14
@@ -30,6 +32,7 @@ horizontal_alignment = 1
 [node name="MarginContainer" type="MarginContainer" parent="."]
 anchors_preset = 10
 anchor_right = 1.0
+offset_bottom = 125.0
 grow_horizontal = 2
 theme_override_constants/margin_left = 10
 theme_override_constants/margin_top = 10
@@ -37,14 +40,37 @@ theme_override_constants/margin_right = 10
 theme_override_constants/margin_bottom = 10
 
 [node name="Time" type="Label" parent="MarginContainer"]
+unique_name_in_owner = true
 layout_mode = 2
 text = "0
 "
 label_settings = SubResource("LabelSettings_yu8mg")
 
 [node name="Score" type="Label" parent="MarginContainer"]
+unique_name_in_owner = true
 layout_mode = 2
 text = "0
 "
 label_settings = SubResource("LabelSettings_yu8mg")
 horizontal_alignment = 2
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 2.0
+one_shot = true
+
+[node name="StartButton" type="Button" parent="."]
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -23.0
+offset_top = -31.0
+offset_right = 23.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_fonts/font = ExtResource("1_h61sl")
+text = "Start"
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="pressed" from="StartButton" to="." method="_on_start_button_pressed"]

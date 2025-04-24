@@ -20,7 +20,6 @@ func _process(delta: float) -> void:
 		time_left += 5
 		spawn_coins()
 	
-
 func new_game():
 	playing = true
 	level = 1
@@ -36,8 +35,23 @@ func spawn_coins():
 		var new_coin = coin_scene.instantiate()
 		add_child(new_coin)
 		new_coin.position = Vector2(randi_range(0, screensize.x), randi_range(0, screensize.y) )
-		
 
-		
-		
-		
+func _on_game_timer_timeout() -> void:
+	time_left -= 1
+	$HUD.update_timer(time_left)
+	if time_left <= 0:
+		game_over()
+
+func _on_player_hurt() -> void:
+	game_over()
+
+func _on_player_pickup_signal() -> void:
+	score += 1
+	$HUD.update_score(score)
+	
+func game_over():
+	playing = false
+	$GameTimer.stop()
+	get_tree().call_group("coins", "queue_free")
+	$HUD.show_game_over()
+	$Player.die()
